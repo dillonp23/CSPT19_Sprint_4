@@ -185,4 +185,34 @@ Write a function that returns the maximum number of instances of "lambda" that c
 
 * Notes:
     - 'text' consists of lowercase English characters only
+
+
+* UPER - Plan:
+    - 'lambda' can be formed from:
+        - l: 1
+        - a: 2
+        - m: 1
+        - b: 1
+        - d: 1
+
+    - means that the word can always be formed x times, where x is the min of counts for l,m,b,d and (a // 2)
+        - i.e. if each letter has a count of 1 (including 'a') result is 0
+        - if each letter other than 'a' is 1 and 'a's count is >= 2, result is 1
+        - therefore limiting factor is min of any of the counts or (count // 2) for letter 'a'
+
+    - init a new dictionary with necessary letters as keys and a count of 0 for the value
+    - loop through each character of input
+    - if character is in dict.keys()
+        - increment dict[character] += 1
+    - otherwise do nothing because we don't care about other letters
+
+    - create a min variable with starting value of inf
+    - use a second loop to iterate through each of letters in lambda dict
+    - if the value is 0 for any of the letters, terminate early and return 0 as we can't form the word
+    - otherwise:
+        - if at letter 'a'
+            - divide value by two
+        - update min to min(min, current_letter)
+        
+    - return min
 """
