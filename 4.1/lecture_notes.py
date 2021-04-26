@@ -65,22 +65,42 @@ Implement MyHashSet class:
 # obj.remove(key)
 # param_3 = obj.contains(key)
 
-class MyHashSet:
+from collections import deque
 
+class MyHashSet:
     def __init__(self):
-        """
-        Initialize your data structure here.
-        """
-        pass
+        self.arr = [None] * 10000
+
+
+    def hashIndex(self, key):
+        return hash(key) % len(self.arr)
+
 
     def add(self, key: int) -> None:
-        pass
+        hash_index = self.hashIndex(key)
+
+        # init a new deque if nothing at index yet
+        if self.arr[hash_index] == None:
+            newList = deque()
+            newList.append(key)
+            self.arr[hash_index] = newList
+        # ensure we don't insert multiple of same elements
+        elif key not in self.arr[hash_index]:
+            self.arr[hash_index].append(key)
+
 
     def remove(self, key: int) -> None:
-        pass
+        hash_index = self.hashIndex(key)
+
+        if self.arr[hash_index] is not None:
+            try:
+                self.arr[hash_index].remove(key)
+            except:
+                pass
+
 
     def contains(self, key: int) -> bool:
-        """
-        Returns true if this set contains the specified element
-        """
-        pass
+        hash_index = self.hashIndex(key)
+        if self.arr[hash_index] is not None:
+            return key in self.arr[hash_index]
+        return False
