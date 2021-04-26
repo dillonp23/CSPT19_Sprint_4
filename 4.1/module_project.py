@@ -21,16 +21,17 @@ Write a function that can find and return the element that appears exactly once.
 
 
 * Note: You should be able to develop a solution that has O(n) time complexity.
+
+
+* UPER - Plan:
+    - init a new 'seen nums' dict
+    - loop through input
+    - check if num is in the seen dict
+        - if its in dict then set value for key to false
+    - else if not in seen dict, add to seen nums dict and set to true (true == only appears once)
+
+    - use a second loop and return the key whose value is True
 """
-
-# init a new 'seen nums' dict
-# loop through input
-# check if num is in the seen dict
-    # if it is, if the value is true, change to false
-    # if the fvalue is false, pass
-# if not add to seen nums dict and set to tru (true == only appears once)
-
-# use a second loop and return the key whose value is True
 
 def csFindTheSingleNumber(nums):
     seen_nums = dict()
@@ -146,8 +147,8 @@ def csAverageOfTopFive(scores):
 
 
 print("\nExercise 2:")
-scores = [[1,91],[1,92],[2,93],[2,97],[1,60],[2,77],[1,65],[1,87],[1,100],[2,100],[2,76]] # expected: [[1,87],[2,88]]
-print(csAverageOfTopFive(scores))
+scores = [[1,91],[1,92],[2,93],[2,97],[1,60],[2,77],[1,65],[1,87],[1,100],[2,100],[2,76]]
+print(csAverageOfTopFive(scores)) # expected: [[1,87],[2,88]]
 
 scores = []
 print(csAverageOfTopFive(scores)) # expected: []
@@ -157,3 +158,31 @@ print(csAverageOfTopFive(scores)) # expected: [[1,2]]
 
 scores = [[1,96],[3,55],[2,66],[2,72],[1,82],[4,56],[1,59],[5,73],[2,93],[2,0],[2,76],[3,0]]
 print(csAverageOfTopFive(scores)) # expected: [[1, 79], [3, 27], [2, 61], [4, 56], [5, 73]]
+
+
+
+
+"""
+Exercise 3: Max Number of Lambdas (task 6 of 6)
+
+Given a string text, you need to use the characters of text to form as many instances of the word "lambda" as possible. 
+You can only use each character in text at most once.
+
+Write a function that returns the maximum number of instances of "lambda" that can be formed.
+
+
+* Examples:
+
+    Input: text = "mbxcdatlas"
+    Output: 1
+
+    Input: text = "lalaaxcmbdtsumbdav"
+    Output: 2
+
+    Input: text = "sctlamb"
+    Output: 0
+
+
+* Notes:
+    - 'text' consists of lowercase English characters only
+"""
