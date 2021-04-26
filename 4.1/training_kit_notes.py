@@ -100,3 +100,69 @@ def my_hasher(input_string, table_size):
 
 print("\nExample of a Basic Hashing Function")
 print(my_hasher("hello", 10))
+
+
+
+
+"""
+Objective 3: Implement a User Defined Hash Table Class
+
+We define a hash table as an empty array and hash function as a function that takes a value and converts it into an array 
+index where you will store that value. Let's put the two together. Let's implement a HashTable class where we can:
+    - insert values into a hash table
+    - retrieve values from a hash table
+    - delete values from a hash table
+"""
+
+# basic hash table class blueprint (does not handle collisions!)
+class HashTable:
+    def __init__(self, capacity):
+        self.capacity = capacity
+        self.storage = [None] * capacity
+        self.item_count = 0
+
+
+    def get_num_slots(self):
+        # not number of items in table, but number of slots in main list
+        return len(self.storage)
+
+
+    def djb2_hasher(self, key):
+        # DJB2 Hash fxn, 32 bit
+
+        # cast key to string and get bytes
+        str_key = str(key).encode()
+
+        # start w/arbitrary large prime
+        hash_val = 5381
+
+        # bit-shift and sum val of each character
+        for byte in str_key:
+            hash_val = ((hash_val << 5) + hash_val) + byte
+            hash_val &= 0xffffffff   # only keep 32 bits
+
+        return hash_val
+
+    
+    def hash_index(self, key):
+        # use hasher func to map key to an index in storage array
+        return self.djb2_hasher(key) % self.capacity
+
+    
+    def put(self, key, value):
+        # update to handle collisions later
+        index = self.hash_index(key)
+
+        self.storage[index] = value
+        return
+
+
+    def delete(self, key, value):
+        #  update to handle collisions later
+        index = self.hash_index(key)
+        self.storage[index] = None
+
+    
+    def get(self, key):
+        index = self.hash_index(key)
+        return self.storage[index]
