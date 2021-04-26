@@ -213,6 +213,35 @@ Write a function that returns the maximum number of instances of "lambda" that c
         - if at letter 'a'
             - divide value by two
         - update min to min(min, current_letter)
-        
+
     - return min
 """
+
+def csMaxNumberOfLambdas(text):
+    letters_dict = {"l":0, "a":0, "m":0, "b":0, "d":0}
+
+    for char in text:
+        if char in letters_dict.keys():
+            letters_dict[char] += 1
+
+    word_min = float("inf")
+
+    for letter in letters_dict.keys():
+        count = letters_dict[letter]
+
+        if letter == "a":
+            count = count // 2
+
+        word_min = min(word_min, count)
+
+
+    return word_min
+
+
+
+print("\nExercise 3:")
+print(csMaxNumberOfLambdas("sctlamb")) # expected: 0
+print(csMaxNumberOfLambdas("lambdalambdalambdalambda")) # expected: 4
+print(csMaxNumberOfLambdas("mbxcdatlas")) # expected: 1
+print(csMaxNumberOfLambdas("lalaaxcmbdtsumbdav")) # expected: 2
+print(csMaxNumberOfLambdas("lalaaxcmbdtsumbdavlalaaxcmbdtsumbdavlalaaxcmbdtsumbdav")) # expected: 6
