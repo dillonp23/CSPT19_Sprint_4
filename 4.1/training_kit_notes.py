@@ -66,3 +66,37 @@ Objective 1: Time & Space Complexity, Strengths & Weaknesses, and Common Uses
         - i.e. all values would be stored as a single linked list held at an index of values array
         - so worst case scenario, has same efficiency as a linked list
 """
+
+
+
+
+"""
+Objective 2: Describe and Implement Hash Tables
+
+
+* Basics
+    - hash tables will take a key and hash it, then map the value to an index
+
+        hashing function + values array = hash table
+
+
+    * example: create a basic hashing function
+        - we can use pythons ".encode()" method to get byte representation of a string
+        - each character will be represented by a int
+        - get sum of all characters and then conert it to an index using the mod operator (%)
+        - returned value will be the index that a given input string maps to in hash table
+"""
+
+def my_hasher(input_string, table_size):
+
+    byte_repr = input_string.encode()
+
+    sum = 0
+    for byte in byte_repr:
+        sum += byte
+
+    return sum % table_size
+
+
+print("\nExample of a Basic Hashing Function")
+print(my_hasher("hello", 10))
