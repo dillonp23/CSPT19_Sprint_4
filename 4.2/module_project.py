@@ -138,7 +138,63 @@ letter in pattern and a non-empty word in 'a'.
     - a contains only lower-case English letters and spaces ' '.
     - a does not contain any leading or trailing spaces.
     - All the words in a are separated by a single space.
+
+
+* UPER - Plan:
+    - number of letters in pattern needs to correspond to # of words in string 'a'
+    - words in 'a' separated by a single space
+
+    - start by splitting a (a.split()) to create a new list of words
+    - ensure len(pattern) == len(words), otherwise return false
+
+    - init a new dict
+    - keys are character in pattern, values are words in a
+        - {char_in_pattern: word_in_a}
+
+    - loop for i in range(len(pattern))
+    - if letter_in_pattern is in dict.keys()
+        - check if the letter maps to same value
+        - i.e. if dict[letter_in_pattern] == word_in_a
+            - else terminate early and return false
+    - if not in dict
+        - ensure word is not already set to another key in dict
+            - only one letter can map to a specific word
+                - i.e. a & b can't both map to "lambda"
+        - add it and continue looping
+    - return true if the loop completes
 """
 
 def csWordPattern(pattern, a):
-    pass
+    words = a.split()
+    
+    if len(words) != len(pattern):
+        return False
+
+    word_map = dict()
+
+    for i in range(len(pattern)):
+        char = pattern[i]
+        word = words[i]
+
+        if char in word_map.keys():
+            if word_map[char] != word:
+                return False
+        else:
+            if word in word_map.values():
+                return False
+
+            word_map[char] = word
+    
+    return True
+
+
+
+print("\nExercise 2:")
+print(csWordPattern("", "")) # expected: True
+print(csWordPattern("ab", "lambda school")) # expected: True
+print(csWordPattern("a", "lambda lambda")) # expected: False
+print(csWordPattern("abba", "lambda school school lambda")) # expected: True
+print(csWordPattern("abba", "lambda school school coding")) # expected: False
+print(csWordPattern("aaaa", "lambda school school lambda")) # expected: False
+print(csWordPattern("aaaa", "lambda lambda lambda lambda")) # expected: True
+print(csWordPattern("abba", "lambda lambda lambda lambda")) # expected: False
