@@ -198,3 +198,41 @@ print(csWordPattern("abba", "lambda school school coding")) # expected: False
 print(csWordPattern("aaaa", "lambda school school lambda")) # expected: False
 print(csWordPattern("aaaa", "lambda lambda lambda lambda")) # expected: True
 print(csWordPattern("abba", "lambda lambda lambda lambda")) # expected: False
+
+
+
+
+
+"""
+Exercise 3: Group Anagrams (task 5 of 5)
+
+Given an array of strings strs, write a function that can group the anagrams. The groups should be ordered such 
+that the larger groups come first, with subsequent groups ordered in descending order.
+
+An Anagram is a word or phrase formed by rearranging the letters of a different word or phrase, typically using 
+all the original letters exactly once.
+
+
+* Examples:
+    1.  Input:
+        strs = ["apt","pat","ear","tap","are","arm"]
+
+        Output:
+        [["apt","pat","tap"],["ear","are"],["arm"]]
+
+    2.  Input:
+        strs = [""]
+
+        Output:
+        [[""]]
+
+    3.  Input:
+        strs = ["a"]
+
+        Output:
+        [["a"]]
+
+
+* Notes:
+    - strs[i] consists of lower-case English letters.
+"""
