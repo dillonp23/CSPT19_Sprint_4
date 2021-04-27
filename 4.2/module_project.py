@@ -41,7 +41,55 @@ No two characters may map to the same character but a character may map to itsel
             b = ""
 
         Output: false
+
+
+* UPER - Plan:
+    requirements for isomorphic strings:
+        - string 'a' and string 'b' must be same length
+        - any letter change must apply to all of the same letter in original string
+            - i.e. if letter 'l' -> 's', all 'l' in string 1 must become 's' in string 2
+        - a letter can remain unchanged
+            - i.e. same letter can map to itself, as long as the above req. is met
+
+        - first check if strings are same length, otherwise return
+        - init a new empty dictionary
+            - key = char in string a, value = char in string b
+            - {char_a: char_b}
+        - use loop for i in range of len(a)
+        - check if char_a is in dict
+            - if so, ensure that the value for char_a maps to char_b
+                - terminate early and return false if not
+        - else, set dict[char_a] = char_b
+        - if the loop completes, return true
 """
 
 def csIsomorphicStrings(a, b):
-    pass
+    if len(a) != len(b):
+        return False
+
+    iso = dict()
+
+    for i in range(len(a)):
+        char_a = a[i]
+        char_b = b[i]
+
+        if char_a in iso.keys():
+            if iso[char_a] != char_b:
+                return False
+        else:
+            iso[char_a] = char_b
+
+
+    return True
+
+
+
+print("\nExercise 1:")
+print(csIsomorphicStrings("", "")) # expected: True
+print(csIsomorphicStrings("a", "")) # expected: False
+print(csIsomorphicStrings("aaa", "aaa")) # expected: True
+print(csIsomorphicStrings("aaa", "bbb")) # expected: True
+print(csIsomorphicStrings("odd", "egg")) # expected: True
+print(csIsomorphicStrings("foo", "bar")) # expected: False
+print(csIsomorphicStrings("abca", "zbxz")) # expected: True
+print(csIsomorphicStrings("abc", "")) # expected: False
