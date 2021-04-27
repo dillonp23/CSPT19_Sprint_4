@@ -93,3 +93,52 @@ print(csIsomorphicStrings("odd", "egg")) # expected: True
 print(csIsomorphicStrings("foo", "bar")) # expected: False
 print(csIsomorphicStrings("abca", "zbxz")) # expected: True
 print(csIsomorphicStrings("abc", "")) # expected: False
+
+
+
+
+
+"""
+Exercise 2: Word Pattern (task 4 of 5)
+
+Given a pattern and a string 'a', find if 'a' follows the same pattern.
+
+Here, to "follow" means a full match, such that there is a one-to-one correspondence between a 
+letter in pattern and a non-empty word in 'a'.
+
+
+* Examples:
+    1.  Input:
+        pattern = "abba"
+        a = "lambda school school lambda"
+
+        Output: true
+
+    2.  Input:
+        pattern = "abba"
+        a = "lambda school school coding"
+
+        Output: false
+
+    3.  Input:
+        pattern = "aaaa"
+        a = "lambda school school lambda"
+
+        Output: false
+
+    4.  Input:
+        pattern = "abba"
+        a = "lambda lambda lambda lambda"
+
+        Output: false
+
+
+* Notes:
+    - pattern contains only lower-case English letters.
+    - a contains only lower-case English letters and spaces ' '.
+    - a does not contain any leading or trailing spaces.
+    - All the words in a are separated by a single space.
+"""
+
+def csWordPattern(pattern, a):
+    pass
