@@ -188,7 +188,50 @@ If the spy exists and can be found, return their identifier. Otherwise, return -
     Output: 3
     Explanation: Person 1 trusts Person 3 and Person 4, Person 2 trusts Person 3 and Person 4, Person 4 trusts Person 3. 
     Since everyone trusts Person 3 but Person 3 does not trust anyone, they are the spy.
+
+
+* UPER - Plan:
+    - use an adjacency list to keep track of trust relationships
+    - 
 """
 
 def uncover_spy(n, trust):
-    pass
+    ppl = {}
+    poss_spies = set()
+
+    for i in range(1,n+1):
+        poss_spies.add(i)
+
+
+    for rel in trust:
+        a = rel[0]
+        b = rel[1]
+
+        if a in poss_spies:
+            poss_spies.remove(a)
+
+        if a in ppl.keys():
+            ppl[a].add(b)
+        else:
+            ppl[a] = {b}
+
+
+    if len(poss_spies) == 1:
+        spy = poss_spies.pop()
+
+        for rel_set in ppl.values():
+            if spy not in rel_set:
+                return -1
+        
+        return spy
+
+    else:
+        return -1
+
+
+
+print(uncover_spy(2, [[1, 2]])) # expected: 2
+print(uncover_spy(3, [[1, 3], [2, 3]])) # expected: 3
+print(uncover_spy(3, [[1, 3], [2, 3], [3, 1]])) # expected: -1
+print(uncover_spy(3, [[1, 2], [2, 3]])) # expected: -1
+print(uncover_spy(4, [[1, 3],[1, 4],[2, 3],[2, 4],[4, 3]])) # expected: 3
