@@ -235,4 +235,35 @@ all the original letters exactly once.
 
 * Notes:
     - strs[i] consists of lower-case English letters.
+
+
+* UPER - Plan:
+    - create a new dict
+    - loop through each word of input list
+    - sort the letters of the word and convert it back to a string
+    - set this as the key for the dictionary
+    - if key not in dict yet, set dict[key] equal to a new list containing the word
+    - else if the key is already in dictionary, just append new word to the existing list
+    - resturn a list of all values in the dictionary
 """
+
+def csGroupAnagrams(strs):
+    ana_groups = {}
+
+    for word in strs:
+        sorted_word = str(sorted(word))
+        
+        if sorted_word in ana_groups:
+            ana_groups[sorted_word].append(word)
+        else:
+            ana_groups[sorted_word] = [word]
+
+
+    return list(ana_groups.values())
+
+
+
+print(csGroupAnagrams([""])) # expected: [['']]
+print(csGroupAnagrams(["a"])) # expected: [['a']]
+print(csGroupAnagrams(["abc","cba","bca","abc","def","fed"])) # expected: [['abc', 'cba', 'bca', 'abc'], ['def', 'fed']]
+print(csGroupAnagrams(["apt","pat","ear","tap","are","arm"])) # expected: [['apt', 'pat', 'tap'], ['ear', 'are'], ['arm']]
