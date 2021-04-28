@@ -157,7 +157,8 @@ The spy, if it exists:
     - Does not trust anyone else.
     - Is trusted by everyone else (he's good at his job).
     - Works alone; there are no other spies in the city-state.
-    - You are given a list of pairs, trust. Each trust[i] = [a, b] represents the fact that person a trusts person b.
+
+You are given a list of pairs, trust. Each trust[i] = [a, b] represents the fact that person a trusts person b.
 
 If the spy exists and can be found, return their identifier. Otherwise, return -1.
 
@@ -185,7 +186,8 @@ If the spy exists and can be found, return their identifier. Otherwise, return -
 
     Input: n = 4, trust = [[1, 3],[1, 4],[2, 3],[2, 4],[4, 3]]
     Output: 3
-    Explanation: Person 1 trusts Person 3 and P
+    Explanation: Person 1 trusts Person 3 and Person 4, Person 2 trusts Person 3 and Person 4, Person 4 trusts Person 3. 
+    Since everyone trusts Person 3 but Person 3 does not trust anyone, they are the spy.
 """
 
 def uncover_spy(n, trust):
