@@ -104,4 +104,41 @@ character in it. If there is no such character, return '_'.
     first_not_repeating_character(s) = '_'.
 
     - There are no characters in this string that do not repeat.
+
+
+* UPER - Plan:
+    - init empty dictionary
+    - iterate through input and check if character in dict
+    - if it is, iterate count += 1
+    - else set count to 1
+
+    - use second loop to iterate through string and reference if letter in dict has a value of 1
+    - return first letter w/value of 1
+    - return "_" if all characters are repeated
 """
+
+def first_not_repeating_character(s):
+    char_counts = {}
+
+    for char in s:
+        if char in char_counts.keys():
+            char_counts[char] += 1
+        else:
+            char_counts[char] = 1
+
+    
+    for char in s:
+        if char_counts[char] == 1:
+            return char
+    
+    return "_"
+
+
+
+print(first_not_repeating_character("abacabad")) # expected: c
+print(first_not_repeating_character("abacabaabacaba")) # expected: _
+print(first_not_repeating_character("z")) # expected: z
+print(first_not_repeating_character("bcb")) # expected: c
+print(first_not_repeating_character("bcccccccb")) # expected: _
+print(first_not_repeating_character("abcdefghijklmnopqrstuvwxyziflskecznslkjfabe")) # expected: d
+print(first_not_repeating_character("bcccccccccccccyb")) # expected: y
